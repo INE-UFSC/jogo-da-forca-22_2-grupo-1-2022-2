@@ -6,9 +6,18 @@ def escolher_palavra() -> str:
 def verificar_match(palavra: str, letras_testadas: set[str]) -> bool:
     """
     Verifica se o usuário acertou a palavra escolhida com base nas letras
-    já testadas.
+    já testadas. Assume que todas as letras em 'letras_testadas' são minúsculas
     """
-    ...
+    
+    if " " in palavra:
+        aux = palavra.split()
+        palavra = "".join(aux)
+    
+    for letra in palavra.lower():
+        if letra not in letras_testadas:
+            return False
+    
+    return True
 
 
 def print_forca(palavra: str, letras_testadas: set[str], vidas: int):
