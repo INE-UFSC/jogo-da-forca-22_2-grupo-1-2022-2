@@ -1,3 +1,4 @@
+from print import print_forca
 import word 
 
 TOTAL_VIDAS = 4
@@ -39,11 +40,6 @@ def verificar_match(palavra: str, letras_testadas: set[str]) -> bool:
             return False
     
     return True
-
-
-def print_forca(palavra: str, letras_testadas: set[str], vidas: int):
-    """Imprime no terminal a interface do jogo com a devida formatação."""
-    ...
 
 
 def pedir_letra() -> str:
