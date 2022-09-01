@@ -1,5 +1,8 @@
 import word 
 
+TOTAL_VIDAS = 4
+
+
 def escolher_palavra() -> str:
     """
     Escolhe uma palavra aleatória de uma lista predefinida.
@@ -43,8 +46,42 @@ def print_forca(palavra: str, letras_testadas: set[str], vidas: int):
     ...
 
 
+def pedir_letra() -> str:
+    """
+    Pede ao usuário para digitar uma letra no terminal. Certifica que
+    a valor inserido é válido.
+    
+    Retorna a letra em lowercase e sem acento.
+    """
+    ...
+
+
 def jogo_da_forca():
     """Inicia o jogo da forca."""
-    ...
+
+    palavra = escolher_palavra()
+    letras_testadas = set()
+    vidas = TOTAL_VIDAS
+
+    while True:
+        print_forca(palavra, letras_testadas, vidas)
+
+        if verificar_match(palavra, letras_testadas):
+            print("Você acertou!")
+            break
+
+        if vidas <= 0:
+            print(
+                f"Você errou, a palavra era '{palavra}'. Mais sorte na próxima vez :/"
+            )
+            break
+
+        letra = pedir_letra()
+
+        if not letra in letras_testadas:
+            letras_testadas.add(letra)
+
+            if not letra in palavra:
+                vidas -= 1
 
 jogo_da_forca()
