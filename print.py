@@ -82,10 +82,10 @@ def print_forca(vidas=6, letras_digitadas=None, palavra_secreta=None, letra_esco
 		print(estados[1])
 	else:
 		print(estados[0])
+	letras_digitadas = list(letras_digitadas)
+	letras_digitadas.sort()
 
 	print('As letras testadas foram:', end= ' ')
 	for letra in letras_digitadas:
 		print(letra, end= ' ')
-	palavra_secreta_escondida = len(palavra_secreta) * '*'#vou completar a palavra usando o argumento de letra escolhida
-
-
+	#palavra_secreta_escondida = len(palavra_secreta) * '
