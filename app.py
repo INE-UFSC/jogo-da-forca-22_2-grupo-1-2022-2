@@ -1,4 +1,3 @@
-from string import ascii_letters
 from print import print_forca
 import word 
 import unicodedata
