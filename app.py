@@ -3,7 +3,7 @@ from print import print_forca
 import word 
 import unicodedata
 
-TOTAL_VIDAS = 4
+TOTAL_VIDAS = 6
 
 
 def escolher_palavra() -> str:
