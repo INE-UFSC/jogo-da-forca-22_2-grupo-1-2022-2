@@ -27,7 +27,7 @@ def remove_acento(palavra: str) -> str:
 
 
 
-def verificar_match(palavra: str, letras_testadas: set[str]) -> bool:
+def verificar_match(palavra: str, letras_testadas: "set[str]") -> bool:
     """
     Verifica se o usuário acertou a palavra escolhida com base nas letras
     já testadas. Assume que todas as letras em 'letras_testadas' são minúsculas
