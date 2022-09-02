@@ -57,7 +57,21 @@ def pedir_letra() -> str:
     
     Retorna a letra em lowercase e sem acento.
     """
-    ...
+    inputletra = "0" 
+    while inputletra.isalpha() == False:
+        while True:
+            inputletra = input(" Digite a letra escolhida:  ").lower()
+            if len(inputletra)>1:
+                print("Por favor digite apenas uma letra.")
+            else:
+                break
+        
+        if inputletra.isalpha():
+            return(remove_acento(inputletra))
+            inputletra.isalpha() == True
+            
+        else:
+            print("Por favor digite uma letra válida.")
 
 
 def jogo_da_forca():
