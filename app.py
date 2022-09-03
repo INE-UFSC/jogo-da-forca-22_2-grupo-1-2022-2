@@ -1,6 +1,6 @@
 from print import print_forca
+from utils import limpar_terminal, remove_acento
 import word 
-import unicodedata
 
 TOTAL_VIDAS = 6
 
@@ -14,17 +14,7 @@ def escolher_palavra() -> str:
     """
     print("Digite a palavra para jogar a forca ou aperte enter para escolher uma palavra aleatória:")
     word_object = word.Word()
-    return word_object.word
-
-
-
-
-def remove_acento(palavra: str) -> str:
-    nkfd_form = unicodedata.normalize('NFKD', palavra)
-    only_ascii = nkfd_form.encode('ASCII', 'ignore')
-    
-    return only_ascii.decode("utf-8")
-
+    return word_object.word.lower()
 
 
 def verificar_match(palavra: str, letras_testadas: "set[str]") -> bool:
@@ -82,6 +72,7 @@ def jogo_da_forca():
     vidas = TOTAL_VIDAS
 
     while True:
+        limpar_terminal()
         print_forca(palavra, letras_testadas, vidas)
 
         if verificar_match(palavra, letras_testadas):

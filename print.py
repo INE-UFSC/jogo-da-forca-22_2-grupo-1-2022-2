@@ -1,3 +1,8 @@
+from utils import remove_acento
+
+IGNORED_CHARS = (" ", "-")
+
+
 def print_forca(palavra_secreta="", letras_testadas={}, vidas=6):
    #Printa os estados do boneco e completa a palavra
 	#o índice indica o número de vidas restantes
@@ -67,27 +72,18 @@ def print_forca(palavra_secreta="", letras_testadas={}, vidas=6):
    I	        	       
    I
 ==================="""]
-   if vidas == 6:
-      print(estados[6])
-   elif vidas == 5:
-      print(estados[5])
-   elif vidas == 4:
-      print(estados[4])
-   elif vidas == 3:
-      print(estados[3])
-   elif vidas == 2:
-      print(estados[2])
-   elif vidas == 1:
-      print(estados[1])
-   else:
-      print(estados[0])
+
+   print(estados[vidas], "\n")
+
    letras_testadas = list(letras_testadas)
    letras_testadas.sort()
-   print("A palavra secreta é:", end= ' ')
-   print("".join(ch if ch in letras_testadas else "*" for ch in palavra_secreta))
-   print("As letras escolhidas até agora foram:", end= ' ')
-   for letra in letras_testadas:
-      print(letra.upper(), end= ' ')
+   
+   char_visiveis = (*letras_testadas, *IGNORED_CHARS)
+   print("".join(ch if remove_acento(ch) in char_visiveis else "_" for ch in palavra_secreta), end="  ")
 
+   if letras_testadas:
+      print("(", " ".join(ch.upper() for ch in letras_testadas), ")", end="")
+   
+   print("\n")
 
 
