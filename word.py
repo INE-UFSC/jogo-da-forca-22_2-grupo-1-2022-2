@@ -4,9 +4,14 @@
 Description:
 
 """
+modules = True
 
-import aiohttp
-import asyncio
+try:
+    import aiohttp
+    import asyncio
+except:
+    print("Not using aiohttp and asyncio modules to randomize the word")
+    modules = False
 
 class Word:
 
@@ -14,8 +19,11 @@ class Word:
 
         self.word = ""
 
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(self.get_random_word())
+        if modules:
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(self.get_random_word())
+        else:
+            get_word_from_list()
 
     async def get_random_word(self):
 
@@ -30,6 +38,6 @@ class Word:
                 html_s2 = html_s1.split("</b></fo")[0] # Split the part after the random word
                 self.word = html_s2
 
-    ## TODO Make a function if the user doesnt have aiohttp or asyncio lib, with a predefined list of words
-
-
+    def get_word_from_list(self):
+        with open("Lista-de-Palavras.txt", "r") as f:
+            text_list = f.readlines()
