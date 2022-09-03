@@ -92,7 +92,7 @@ def jogo_da_forca():
         if not letra in letras_testadas:
             letras_testadas.add(letra)
 
-            if not letra in palavra:
+            if not letra in remove_acento(palavra):
                 vidas -= 1
 
 jogo_da_forca()
