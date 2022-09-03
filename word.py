@@ -6,6 +6,8 @@ Description:
 """
 modules = True
 
+import random
+
 try:
     import aiohttp
     import asyncio
@@ -23,7 +25,7 @@ class Word:
             loop = asyncio.get_event_loop()
             loop.run_until_complete(self.get_random_word())
         else:
-            get_word_from_list()
+            self.get_word_from_list()
 
     async def get_random_word(self):
 
@@ -39,5 +41,6 @@ class Word:
                 self.word = html_s2
 
     def get_word_from_list(self):
-        with open("Lista-de-Palavras.txt", "r") as f:
+        with open("final_list.txt", "r") as f:
             text_list = f.readlines()
+        self.word = text_list[random.randint(0,28639)]
