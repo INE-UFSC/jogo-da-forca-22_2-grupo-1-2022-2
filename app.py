@@ -1,6 +1,6 @@
 from print import print_forca
 from utils import limpar_terminal, remove_acento
-import word 
+from word import Word
 
 TOTAL_VIDAS = 6
 
@@ -13,8 +13,12 @@ def escolher_palavra() -> str:
     :type word_object.word: String
     """
     print("Digite a palavra para jogar a forca ou aperte enter para escolher uma palavra aleatória:")
-    word_object = word.Word()
-    return word_object.word.lower()
+    word = input()
+    if len(word) == 0:
+        word_object = Word()
+        return word_object.word.lower()
+    else:
+        return word.lower()
 
 
 def verificar_match(palavra: str, letras_testadas: "set[str]") -> bool:
@@ -22,21 +26,21 @@ def verificar_match(palavra: str, letras_testadas: "set[str]") -> bool:
     Verifica se o usuário acertou a palavra escolhida com base nas letras
     já testadas. Assume que todas as letras em 'letras_testadas' são minúsculas
     """
-    
+
     palavra = remove_acento(palavra)
-    
+
     if '-' in palavra:
         aux = palavra.split('-')
         palavra = "".join(aux)
-    
+
     elif " " in palavra:
         aux = palavra.split()
         palavra = "".join(aux)
-    
-    for letra in palavra.lower():    
+
+    for letra in palavra.lower():
         if letra not in letras_testadas:
             return False
-    
+
     return True
 
 
@@ -44,10 +48,10 @@ def pedir_letra() -> str:
     """
     Pede ao usuário para digitar uma letra no terminal. Certifica que
     a valor inserido é válido.
-    
+
     Retorna a letra em lowercase e sem acento.
     """
-    inputletra = "0" 
+    inputletra = "0"
     while inputletra.isalpha() == False:
         while True:
             inputletra = input(" Digite a letra escolhida:  ").lower()
@@ -55,11 +59,9 @@ def pedir_letra() -> str:
                 print("Por favor digite apenas uma letra.")
             else:
                 break
-        
         if inputletra.isalpha():
             return(remove_acento(inputletra))
             inputletra.isalpha() == True
-            
         else:
             print("Por favor digite uma letra válida.")
 
